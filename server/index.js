@@ -32,6 +32,27 @@ app.post('/register', (req, res) => {
 
 })
 
+app.post('/login', (req, res) => {
+    const {email, password} = req.body;
+    UserModel.findOne({email: email})
+    .then(user => {
+        if(user) {
+            bcrypt.compare(password, user.password, (err, response) => {
+                if(response) {
+                    const token = jwt.sign({email: user.email, username: user.username},
+                        "jwt-secret-key", {expiresIn: '1d'})
+                    res.cookie('token', token)
+                    return res.json("Success");
+                } else {
+                    return res.json("Password is incorrect")
+                }
+            })
+        } else {
+            res.json("User not exist")
+        }
+    })
+})
+
 app.listen(3001, () => {
     console.log("Server is running at port 3001.")
 })
