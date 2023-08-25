@@ -19,8 +19,15 @@ function Navbar() {
     <div className='navbar-header'>
         <div><h3>Blog App</h3></div>
         <div>
-            <a href="" className='link'>Home</a>
-            <a href="" className='link'>Create</a>
+            <Link to="/" className='link'>Home</Link>
+            {
+              user.username ?
+              <Link to="/create" className='link'>Create</Link>
+              :
+              <></>
+
+            }
+
             <a href="" className='link'>Contact</a>
         </div>
         {
