@@ -6,6 +6,7 @@ import Home from "./Home";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import CreatePost from "./CreatePost";
+import Post from "./Post";
 
 export const userContext = createContext()
 
@@ -30,6 +31,7 @@ export default function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/create' element={<CreatePost />}></Route>
+        <Route path='/post/:id' element={<Post />}></Route>
 
       </Routes>
     </BrowserRouter>

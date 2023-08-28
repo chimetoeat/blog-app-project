@@ -46,3 +46,23 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+img {
+  width: auto;
+  height: 300px;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  border: 1px gray solid;
+  width: fit-content;
+  padding: 30px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
+}
+

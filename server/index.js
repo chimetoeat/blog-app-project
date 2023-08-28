@@ -17,6 +17,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+app.use(express.static('public'))
 
 mongoose.connect('mongodb://127.0.0.1:27017/blog')
 
@@ -93,6 +94,19 @@ app.post('/create', verifyUser, upload.single('file'), (req, res) => {
         file: req.file.filename})
         .then(result => res.json("Success"))
         .catch(err => res.json(err))
+})
+
+app.get('/getposts', (req, res) => {
+    PostModel.find()
+    .then(posts => res.json(posts))
+    .catch(err => res.json(err))
+})
+
+app.get('/getpostbyid/:id', (req, res) => {
+    const id = req.params.id
+    PostModel.findById({_id: id})
+    .then(post => res.json(post))
+    .catch(err => console.log(err))
 })
 
 
