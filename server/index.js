@@ -91,7 +91,8 @@ const upload = multer({
 app.post('/create', verifyUser, upload.single('file'), (req, res) => {
     PostModel.create({title: req.body.title,
         description: req.body.description,
-        file: req.file.filename})
+        file: req.file.filename,
+        email: req.body.email})
         .then(result => res.json("Success"))
         .catch(err => res.json(err))
 })
@@ -116,6 +117,12 @@ app.put('/editpost/:id', (req, res) => {
         {title: req.body.title, 
         description: req.body.description
     }).then(result => res.json("Success"))
+    .catch(err => res.json(err))
+})
+
+app.delete('/deletepost/:id', (req, res) => {
+    PostModel.findByIdAndDelete({_id: req.params.id})
+    .then(result => res.json("Success"))
     .catch(err => res.json(err))
 })
 
