@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function Post() {
     const {id} = useParams()
@@ -17,7 +17,7 @@ function Post() {
             <img src={`http://localhost:3001/Images/${post.file}`} alt="" />
             <h2>{post.title}</h2>
             <p>{post.description}</p>
-            <button>Edit</button>
+            <Link to={`/editpost/${post._id}`}>Edit</Link>
             <button>Delete</button>
         </div>
 

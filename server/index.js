@@ -109,6 +109,16 @@ app.get('/getpostbyid/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+app.put('/editpost/:id', (req, res) => {
+    const id = req.params.id
+    PostModel.findByIdAndUpdate({
+        _id: id}, 
+        {title: req.body.title, 
+        description: req.body.description
+    }).then(result => res.json("Success"))
+    .catch(err => res.json(err))
+})
+
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token')
